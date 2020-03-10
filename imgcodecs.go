@@ -244,5 +244,6 @@ func IMDecode(buf []byte, flags IMReadFlag) (Mat, error) {
 	if err != nil {
 		return Mat{}, err
 	}
+	defer C.ByteArray_Release(*data)
 	return newMat(C.Image_IMDecode(*data, C.int(flags))), nil
 }
